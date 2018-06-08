@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<meta charset="UTF-8"/>
+<html>
+  <head>
+  <style>
+    body {
+      padding:0;
+      margin: 0;
+    }
+    iframe {
+      width: 1920px;
+      height: 1080px;
+      overflow: hidden;
+      border: 0;
+    }
+  </style>
+  </head>
+  <body>
+    <iframe id="iframe" src="" height="100%" width="100%"></iframe>
+    <script type="text/javascript">
+      let urlRegex = new RegExp("\\?(.+)$");
+      let url = urlRegex.exec(window.location.href)[0].substring(1);
+      console.log(url);
+
+      let iframe = document.getElementById("iframe");
+      iframe.src = url
+      setInterval(function() {
+        let ts = new Date().getTime(); // Just something that will change over time.
+        iframe.src = url + '?forceRefreshTs=' + ts;
+      }, 1000 * 60 * 60);
+    </script>
+  </body>
+</html>
